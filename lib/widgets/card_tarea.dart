@@ -25,7 +25,7 @@ class CardTarea extends StatelessWidget {
                 children: [
                   Text(tarea.titulo),
                   Text(
-                    'Creado el ${FormatterUtil.fechaConHora(tarea.fechaCreacion)}',
+                    'Creado: ${FormatterUtil.fechaConHora(tarea.fechaCreacion)}',
                   ),
                 ],
               ),
