@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/tarea.dart';
 import '../utils/formatter_util.dart';
+import 'editar_tarea_dialog.dart';
 import 'eliminar_tarea_dialog.dart';
 
 class CardTarea extends StatelessWidget {
@@ -33,6 +34,16 @@ class CardTarea extends StatelessWidget {
             Row(
               children: [
                 InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return EditarTareaDialog(
+                          tarea: tarea,
+                        );
+                      },
+                    );
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(

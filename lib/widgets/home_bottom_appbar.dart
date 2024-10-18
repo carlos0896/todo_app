@@ -1,7 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/models/tarea.dart';
 import 'package:todo_app/widgets/home_button_text.dart';
+
+import '../providers/agenda_provider.dart';
 
 class HomeBottomAppbar extends StatelessWidget {
   const HomeBottomAppbar({
@@ -10,6 +14,9 @@ class HomeBottomAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tipoTareaSeleccionada =
+        Provider.of<AgendaProvider>(context).tipoTareaSeleccionada;
+
     return BottomAppBar(
       color: Colors.deepPurple,
       child: Row(
@@ -18,26 +25,26 @@ class HomeBottomAppbar extends StatelessWidget {
           HomeButtonText(
             title: 'Por Hacer',
             onTap: () {
-              log('Tap en por hacer');
+              Provider.of<AgendaProvider>(context, listen: false)
+                  .cambiarTipoTareaSeleccionada(TipoTarea.porHacer);
             },
+            isSelected: tipoTareaSeleccionada == TipoTarea.porHacer,
           ),
           HomeButtonText(
             title: 'Haciendo',
             onTap: () {
-              log('Tap en haciendo');
+              Provider.of<AgendaProvider>(context, listen: false)
+                  .cambiarTipoTareaSeleccionada(TipoTarea.haciendo);
             },
+            isSelected: tipoTareaSeleccionada == TipoTarea.haciendo,
           ),
           HomeButtonText(
             title: 'Hechas',
             onTap: () {
-              log('Tap en hechas');
+              Provider.of<AgendaProvider>(context, listen: false)
+                  .cambiarTipoTareaSeleccionada(TipoTarea.hecha);
             },
-          ),
-          HomeButtonText(
-            title: 'En Revisión',
-            onTap: () {
-              log('Tap en En Revisión');
-            },
+            isSelected: tipoTareaSeleccionada == TipoTarea.hecha,
           ),
         ],
       ),
